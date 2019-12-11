@@ -14,6 +14,7 @@ class BuildingTest < Minitest::Test
     @unit4 = Apartment.new({number: "D4", monthly_rent: 1500, bathrooms: 3, bedrooms: 2})
     @renter1 = Renter.new("Spencer")
     @renter2 = Renter.new("Jessie")
+    @renter3 = Renter.new("Max")  
   end
 
   def test_it_exists
