@@ -18,12 +18,8 @@ class Building
   end
 
   def renter_with_highest_rent
-    sorted_renter = @building_units.sort_by do |unit|
-         unit.monthly_rent.to_f
-       end
-    sorted_renter.delete_if do |unit|
-      unit.renter == nil
-    end
+    sorted_renter = @building_units.sort_by { |unit| unit.monthly_rent.to_f }
+    sorted_renter.delete_if { |unit| unit.renter == nil }
     sorted_renter.last.renter
   end
 end
