@@ -16,4 +16,14 @@ class Building
     end
     avg_rent = total_rent.to_f / (@building_units.count)
   end
+
+  def renter_with_highest_rent
+    sorted_renter = @building_units.sort_by do |unit|
+         unit.monthly_rent.to_f
+       end
+    sorted_renter.delete_if do |unit|
+      unit.renter == nil
+    end
+    sorted_renter.last.renter
+  end
 end
