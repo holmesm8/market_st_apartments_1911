@@ -8,4 +8,12 @@ class Building
   def add_unit(unit)
     @building_units << unit
   end
+
+  def average_rent
+    total_rent = 0
+    @building_units.map do |unit|
+      total_rent += unit.monthly_rent
+    end
+    avg_rent = total_rent.to_f / (@building_units.count)
+  end
 end
