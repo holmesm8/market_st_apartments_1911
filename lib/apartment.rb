@@ -1,11 +1,11 @@
 class Apartment
   attr_reader :number, :monthly_rent, :bathrooms, :bedrooms, :renter
 
-  def initialize(unit_info)
-    @number = unit_info[:number]
-    @monthly_rent = unit_info[:monthly_rent]
-    @bathrooms = unit_info[:bathrooms]
-    @bedrooms = unit_info[:bedrooms]
+  def initialize(apt_info)
+    @number = apt_info[:number]
+    @monthly_rent = apt_info[:monthly_rent]
+    @bathrooms = apt_info[:bathrooms]
+    @bedrooms = apt_info[:bedrooms]
     @renter = nil
   end
 

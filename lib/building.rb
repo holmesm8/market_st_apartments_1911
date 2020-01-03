@@ -1,23 +1,33 @@
 class Building
-  attr_reader :building_units
+  attr_reader :units
 
   def initialize
-    @building_units = []
+    @units = []
   end
 
   def add_unit(unit)
-    @building_units << unit
+    @units << unit
   end
 
   def average_rent
-    total_rent = 0
-    @building_units.map { |unit| total_rent += unit.monthly_rent }
-    avg_rent = total_rent.to_f / (@building_units.count)
+    rent_totals = @units.map {|unit| unit.monthly_rent}
+    avg_rent = rent_totals.sum / rent_totals.count.to_f
   end
 
   def renter_with_highest_rent
-    sorted_renter = @building_units.sort_by { |unit| unit.monthly_rent.to_f }
-    sorted_renter.delete_if { |unit| unit.renter == nil }
-    sorted_renter.last.renter
+    @units.max_by do |unit|
+      if unit.renter != nil
+        unit.monthly_rent
+        return unit.renter
+      end
+    end
+  end
+
+  def annual_breakdown
+    occupied = @units.find_all {|unit| unit if unit.renter != nil}
+    occupied.reduce({}) do |hash, key|
+      hash[key.renter.name] = key.monthly_rent * 12
+      hash
+    end
   end
 end
